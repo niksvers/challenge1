@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/nabChallenge" mode="merge"/>
+    <filter root="/content/nabChallenge" mode="merge"/>
+    <filter root="/content/dam/nabChallenge" mode="merge"/>
+</workspaceFilter>
