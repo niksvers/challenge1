@@ -64,6 +64,9 @@
                             javax.annotation;version=0.0.0,
                             *
                         </Import-Package>
+                        <Include-Resource>
+                        	@json-simple-1.1.1.jar
+                        </Include-Resource>
                         <Sling-Model-Packages>
                             com.biztech.nikhil.core
                         </Sling-Model-Packages>
@@ -119,6 +122,10 @@
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
         </dependency>
+        <dependency>
+    		<groupId>com.googlecode.json-simple</groupId>
+    		<artifactId>json-simple</artifactId>
+		</dependency>
         <!-- Other Dependencies -->
         <dependency>
             <groupId>org.slf4j</groupId>
