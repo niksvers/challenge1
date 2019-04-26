@@ -15,6 +15,7 @@
  */
 package com.biztech.nikhil.core.servlets;
 
+import com.biztech.nikhil.services.CurrencyInfoProvider;
 import com.day.cq.commons.jcr.JcrConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -26,9 +27,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.apache.sling.api.resource.ValueMap;
 import org.osgi.framework.Constants;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -47,6 +48,9 @@ import java.io.IOException;
 public class BestProfitServlet extends SlingSafeMethodsServlet {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Reference
+	CurrencyInfoProvider currencyInfoProvider;
 
 	@Override
 	protected void doGet(final SlingHttpServletRequest req, final SlingHttpServletResponse resp)
@@ -57,6 +61,7 @@ public class BestProfitServlet extends SlingSafeMethodsServlet {
 
 		JSONParser parser = new JSONParser();
 		JSONArray currencyArray;
+		
 		try {
 			currencyArray = (JSONArray) parser.parse(new FileReader("/Users/nikhilverma/git/challenge1/data/20180507.json"));
 
@@ -81,6 +86,9 @@ public class BestProfitServlet extends SlingSafeMethodsServlet {
 					resp.getWriter().write("\n\n");
 				} 
 			}
+			
+			resp.getWriter().write(currencyInfoProvider.getCurrencyInfo("BTC"));
+			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
