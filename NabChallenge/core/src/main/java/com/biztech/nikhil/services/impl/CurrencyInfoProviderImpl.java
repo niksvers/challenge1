@@ -3,6 +3,8 @@ package com.biztech.nikhil.services.impl;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.sling.jcr.api.SlingRepository;
 import org.json.simple.JSONArray;
@@ -15,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.biztech.nikhil.services.CurrencyInfoProvider;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @Component(service=CurrencyInfoProvider.class)
@@ -26,7 +29,7 @@ public class CurrencyInfoProviderImpl implements CurrencyInfoProvider{
 	private SlingRepository repository;
 
 	@Override
-	public String getCurrencyInfo(String currency) {
+	public Map<String, Object> getCurrencyInfo(String currency) {
 		
 		JSONParser parser = new JSONParser();
 		JSONArray currencyArray;
@@ -40,7 +43,9 @@ public class CurrencyInfoProviderImpl implements CurrencyInfoProvider{
 				
 				if(currency.equals(cName)) {
 					
-					return currencyJSON.toJSONString();
+					HashMap<String,Object> currencyMap = new ObjectMapper().readValue(currencyJSON.toJSONString(), HashMap.class);
+					
+					return currencyMap;
 					
 				}
 
@@ -56,7 +61,7 @@ public class CurrencyInfoProviderImpl implements CurrencyInfoProvider{
 			e.printStackTrace();
 		}
 		
-		return currency;
+		return null;
 	}
 
 }

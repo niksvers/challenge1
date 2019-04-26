@@ -1,7 +1,9 @@
 package com.biztech.nikhil.services;
 
+import java.util.Map;
+
 public interface CurrencyInfoProvider {
 	
-	public String getCurrencyInfo(String currency);
+	public Map<String, Object> getCurrencyInfo(String currency);
 
 }

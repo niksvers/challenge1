@@ -87,7 +87,7 @@ public class BestProfitServlet extends SlingSafeMethodsServlet {
 				} 
 			}
 			
-			resp.getWriter().write(currencyInfoProvider.getCurrencyInfo("BTC"));
+			resp.getWriter().write(currencyInfoProvider.getCurrencyInfo("BTC").toString());
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

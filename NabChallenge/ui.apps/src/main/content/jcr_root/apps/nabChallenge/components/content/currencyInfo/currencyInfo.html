@@ -3,6 +3,13 @@
     <p>${properties.description}</p>
 </div>
 
-<div data-sly-use.currency="${'com.biztech.nikhil.core.pojos.CurrencyPojo' @ currency='BTC'}">
-  <h1>${currency.currency}</h1>
+<div data-sly-use.currencyInfo="${'com.biztech.nikhil.core.pojos.CurrencyPojo' @ currency='BTC'}">
+	<h1>${currencyInfo.currencyInfo['currency']}</h1>
+	<h3>${currencyInfo.currencyInfo['date']}</h3>
+
+	<ul data-sly-list.item="${currencyInfo.currencyInfo['quotes']}">
+		<li>
+        	<p>${item['time']} : ${item['price']}</p>
+        </li>
+	</ul>
 </div>
