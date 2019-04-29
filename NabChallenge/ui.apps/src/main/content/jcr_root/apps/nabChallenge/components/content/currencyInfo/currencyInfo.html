@@ -1,15 +1,37 @@
-<div><p>Hellooo</p>
-    <h1>${properties.title}</h1>
-    <p>${properties.description}</p>
-</div>
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientlib.all @ categories=['nabchallenge.currencyInfo']}"/>
 
-<div data-sly-use.currencyInfo="${'com.biztech.nikhil.core.pojos.CurrencyPojo' @ currency='BTC'}">
+
+<div data-sly-use.currencyInfo="${'com.biztech.nikhil.core.pojos.CurrencyPojo' @ currency=properties.currency}">
 	<h1>${currencyInfo.currencyInfo['currency']}</h1>
 	<h3>${currencyInfo.currencyInfo['date']}</h3>
 
 	<ul data-sly-list.item="${currencyInfo.currencyInfo['quotes']}">
 		<li>
-        	<p>${item['time']} : ${item['price']}</p>
+        	<p>${item['time']} : $${item['price']}</p>
         </li>
 	</ul>
+
+
+    <table>
+    	<tr>
+    		<th colspan="2">BTC</th>
+        </tr>
+        <tr>
+        	<td>BUY</td>
+            <td>SELL</td>
+        </tr>
+        <tr>
+        	<td>$${currencyInfo.currencyQuoteBuy['price']}</td>
+            <td>$${currencyInfo.currencyQuoteSell['price']}</td>
+        </tr>
+        <tr>
+        	<td>${currencyInfo.currencyQuoteBuy['time']}</td>
+            <td>${currencyInfo.currencyQuoteSell['time']}</td>
+        </tr>
+        <tr>
+        	<td>PROFIT</td>
+            <td>$${currencyInfo.bestProfit}</td>
+        </tr>
+    </table>
 </div>

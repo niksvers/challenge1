@@ -51,14 +51,15 @@ public class CurrencyInfoProviderImpl implements CurrencyInfoProvider{
 
 			}
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			LOGGER.error(e.getMessage());
+			LOGGER.error(e.getMessage());
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage());
+			LOGGER.error(e.getMessage());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage());
+			LOGGER.error(e.getMessage());
 		}
 		
 		return null;
