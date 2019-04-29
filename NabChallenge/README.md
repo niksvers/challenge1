@@ -1,3 +1,4 @@
+
 # Sample AEM project template
 
 This is a project template for AEM-based applications. It is intended as a best-practice set of examples as well as a potential starting point to develop your own functionality.
@@ -34,21 +35,16 @@ Or to deploy only the bundle to the author, run
 
     mvn clean install -PautoInstallBundle
 
-## Testing
+## How to configure
 
 There are three levels of testing contained in the project:
 
-* unit test in core: this show-cases classic unit testing of the code contained in the bundle. To test, execute:
+* Go to configuration manager : /system/console/configMgr
 
-    mvn clean test
+* Find "NAB Challenge Configuration"
 
-* server-side integration tests: this allows to run unit-like tests in the AEM-environment, ie on the AEM server. To test, execute:
+* Set the file path of the JSON file with currency data
 
-    mvn clean verify -PintegrationTests
-
-* client-side Hobbes.js tests: JavaScript-based browser-side tests that verify browser-side behavior. To test:
-
-    in the browser, open the page in 'Developer mode', open the left panel and switch to the 'Tests' tab and find the generated 'MyName Tests' and run them.
 
 
 ## Maven settings
