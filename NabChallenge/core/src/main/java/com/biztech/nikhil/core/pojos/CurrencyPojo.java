@@ -28,7 +28,7 @@ public class CurrencyPojo extends WCMUsePojo {
 		CurrencyInfoProvider currencyInfoProvider = getSlingScriptHelper().getService(CurrencyInfoProvider.class);
 		currencyInfo = currencyInfoProvider.getCurrencyInfo(currency);
 		
-		
+		// date formatting
 		currencyInfo.replace("date", new SimpleDateFormat("d MMM yyyy").format( new SimpleDateFormat("yyyyMMdd").parse("" + currencyInfo.get("date")) ));
 		
 		calculateBestProfitQuote();
@@ -46,6 +46,7 @@ public class CurrencyPojo extends WCMUsePojo {
 		
 		int buyIndex=0, sellIndex=0;
 		
+		// find best buy & sell quote
 		for(int i=1; i<quotesList.size(); i++) {
 			
 			BigDecimal buyPrice = new BigDecimal(quotesList.get(buyIndex).get("price"));
@@ -56,14 +57,13 @@ public class CurrencyPojo extends WCMUsePojo {
 				sellIndex = i;
 			}
 			
-			//if( Float.compare(Float.parseFloat(quotesList.get(buyIndex).get("price")), Float.parseFloat(quotesList.get(i).get("price"))) > 0 && i<sellIndex) {
 			if(buyPrice.compareTo(iPrice) > 0 && i<sellIndex) {
 				buyIndex = i;
 			}
 			
 		}
 		
-		
+		// calculate best profit
 		if(buyIndex != sellIndex) {
 			currencyQuoteBuy = ((List<HashMap<String, String>>)currencyInfo.get("quotes")).get(buyIndex);
 			currencyQuoteSell = ((List<HashMap<String, String>>)currencyInfo.get("quotes")).get(sellIndex);
